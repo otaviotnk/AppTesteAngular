@@ -26,23 +26,21 @@ export class CursoComponent implements OnInit {
 
   //Define se o Curso será somente atualizado ou se será criado
   saveCurso(form: NgForm){
+
+    //O PROBLEMA TÁ AQUI....
+
     if(this.curso.id !== undefined){
       this.cursosService.updateCurso(this.curso).subscribe(() =>{
         this.limpaFormulario(form)
-      });
-      
+      });      
     }
+
+    //AQUI TUDO CERTO
     else{
       this.cursosService.saveCurso(this.curso).subscribe(() =>{
       this.limpaFormulario(form)
       });
-    }
-  }
-
-  getCursos2(){
-    this.cursosService.getCursos().subscribe(cursos =>{
-      this.cursos = cursos;
-    });
+    }  
   }
 
   getCursos(){
